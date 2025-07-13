@@ -1,4 +1,4 @@
-'use client'; // For client-side rendering
+'use client'; // Required for state management
 
 import { useState } from 'react';
 import { Input } from './ui/Input';
@@ -16,10 +16,11 @@ export const LoginForm = () => {
     try {
       const response: AuthResponse = await login(credentials);
       if (response.token) {
-        // Handle successful login (e.g., store token in localStorage)
         console.log('Login successful', response.token);
+      } else if (response.error) {
+        setError(response.error);
       } else {
-        setError(response.error || 'Unknown error');
+        setError('Unknown error');
       }
     } catch (err) {
       setError('Failed to connect to server');
