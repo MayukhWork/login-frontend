@@ -5,6 +5,7 @@ export interface User {
 
 export interface AuthResponse {
   message?: string;
+  user?: { username: string; email: string };
   token?: string;
   error?: string;
 }
